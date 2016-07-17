@@ -9,9 +9,24 @@ let app = express();
 app.use(morgan('dev'));
 
 app.get('/',(req,res) => {
-    res.send('hello world!');
+  res.send('hello world!');
+});
+
+app.get('/users', (req,res)=> {
+  res.send([
+    {
+      'id':1,
+      'name':'jorge calle',
+      'email':'jorcalle11@gmail.com'
+    },
+    {
+      'id':2,
+      'name':'nicole calle guzman',
+      'email': 'nicolecalle05@gmail.com'
+    }
+  ]);
 });
 
 app.listen(port, function () {
-    console.log(`server running and listening in http://localhost:${port}`);
+  console.log(`server running and listening in http://localhost:${port}`);
 });

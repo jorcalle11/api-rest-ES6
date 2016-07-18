@@ -1,32 +1,28 @@
 'use strict';
 
-import express from 'express';
-import morgan from 'morgan';
+import express    from 'express';
+import morgan     from 'morgan';
+import bodyPaser  from 'body-parser';
+import config     from './config';
+import {connect}  from './db/conection';
+import routes     from './routes';
 
-const port = process.env.PORT || 3000;
+
 let app = express();
-
+app.use(bodyPaser.urlencoded({extended:false}));
+app.use(bodyPaser.json());
 app.use(morgan('dev'));
+app.use(routes);
 
-app.get('/',(req,res) => {
-  res.send('hello world!');
-});
+connect(config.url)
+  .then((data) => {
+    app.listen(config.port, connectServer);
+    console.log(data.message);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
-app.get('/users', (req,res)=> {
-  res.send([
-    {
-      'id':1,
-      'name':'jorge calle',
-      'email':'jorcalle11@gmail.com'
-    },
-    {
-      'id':2,
-      'name':'nicole calle guzman',
-      'email': 'nicolecalle05@gmail.com'
-    }
-  ]);
-});
-
-app.listen(port, function () {
-  console.log(`server running and listening in http://localhost:${port}`);
-});
+function connectServer() {
+  console.log(`server running and listening in http://localhost:${config.port}`);
+}

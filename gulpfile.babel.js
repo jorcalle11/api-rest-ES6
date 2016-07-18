@@ -17,7 +17,7 @@ let paths = {
 	gulp: './gulpfile.js'
 };
 
-gulp.task('default',['transpilate','nodemon']);
+gulp.task('default',['nodemon']);
 
 gulp.task('nodemon',['jshint','transpilate'], () => {
 	return nodemon({

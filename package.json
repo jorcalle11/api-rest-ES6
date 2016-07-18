@@ -4,6 +4,7 @@
   "description": "Api Rest Ful utilizando Ecmascript 6",
   "main": "app.js",
   "scripts": {
+    "prestart": "gulp transpilate",
     "start": "gulp"
   },
   "repository": {
@@ -32,10 +33,12 @@
     "gulp-jshint": "^2.0.0",
     "gulp-nodemon": "^2.0.6",
     "jshint": "^2.9.1",
-    "jshint-stylish": "^2.1.0",
-    "morgan": "^1.6.1"
+    "jshint-stylish": "^2.1.0"
   },
   "dependencies": {
-    "express": "^4.13.4"
+    "body-parser": "^1.15.2",
+    "express": "^4.13.4",
+    "mongodb": "^2.2.2",
+    "morgan": "^1.6.1"
   }
 }
